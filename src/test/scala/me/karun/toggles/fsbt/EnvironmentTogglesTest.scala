@@ -29,7 +29,7 @@ class EnvironmentTogglesTest extends WordSpec with Matchers {
     "config is invalid" in {
       val expectedMessage = "Following toggles are mapped to states do not have a state definition: in-qa-1-toggle, in-qa-2-toggle, signed-off-toggle"
 
-      val caught = intercept[RuntimeException] {
+      val caught = intercept[InvalidTogglesException] {
         createEnvironmentWithInvalidFile("local")
       }
 
@@ -37,9 +37,9 @@ class EnvironmentTogglesTest extends WordSpec with Matchers {
     }
 
     "environment is invalid" in {
-      val expectedMessage = "invalid-environment is not mapped to a state"
+      val expectedMessage = "invalid-environment was not mapped to a state in the configuration"
 
-      val caught = intercept[RuntimeException] {
+      val caught = intercept[UnmappedEnvironmentException] {
         createEnvironment("invalid-environment")
       }
 

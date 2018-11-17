@@ -24,14 +24,14 @@ class EnvironmentToggles(fileName: String, baseKey: String, environmentName: Str
       .filter(!_._2)
       .map(_._1)
 
-    if (invalidKeys.nonEmpty) throw new RuntimeException(s"Following toggles are mapped to states do not have a state definition: ${invalidKeys.toList.sorted.mkString(", ")}")
+    if (invalidKeys.nonEmpty) throw InvalidTogglesException(invalidKeys)
 
-    toggleConfig
+      toggleConfig
   }
 
   private val envState = {
     val maybeEnvState = stateDefinitions.find(_.canHandleEnvironment(environmentName))
-    if (maybeEnvState.isEmpty) throw new RuntimeException(s"$environmentName is not mapped to a state")
+    if (maybeEnvState.isEmpty) throw new UnmappedEnvironmentException(environmentName)
     maybeEnvState.get
   }
 
@@ -39,7 +39,7 @@ class EnvironmentToggles(fileName: String, baseKey: String, environmentName: Str
     val toggleStateString = toggles.getString(toggleName)
     val toggleState = stateDefinitions.find(_.canHandleState(toggleStateString))
 
-    if (toggleState.isEmpty) throw new RuntimeException(s"Invalid toggle state: $toggleStateString")
+    if (toggleState.isEmpty) throw InvalidTogglesException(toggleName)
 
     envState.canRun(toggleState.get)
   }
