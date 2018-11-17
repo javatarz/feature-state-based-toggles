@@ -15,33 +15,24 @@ class EnvironmentToggles(fileName: String, baseKey: String, environmentName: Str
     .map(t => StateDefinition(t._1, t._2))
 
   private val toggles = {
-    val toggleConfig = config.getConfig(baseKey)
-
-    val invalidKeys = toggleConfig.entrySet().asScala
+    val (validKeys, invalidKeys) = config.getConfig(baseKey).entrySet().asScala
       .map(e => (e.getKey, e.getValue.unwrapped()))
       .map(t => (t._1, t._2))
-      .map(t => (t._1, stateDefinitions.exists(_.canHandleState(t._2.toString))))
-      .filter(!_._2)
-      .map(_._1)
+      .map(t => (t._1, stateDefinitions.find(_.canHandleState(t._2.toString))))
+      .partition(t => t._2.isDefined)
 
-    if (invalidKeys.nonEmpty) throw InvalidTogglesException(invalidKeys)
+    if (invalidKeys.nonEmpty) throw InvalidTogglesException(invalidKeys.map(_._1))
 
-      toggleConfig
+    validKeys
+      .map(t => (t._1, t._2.get))
+      .toMap
   }
 
-  private val envState = {
-    val maybeEnvState = stateDefinitions.find(_.canHandleEnvironment(environmentName))
-    if (maybeEnvState.isEmpty) throw new UnmappedEnvironmentException(environmentName)
-    maybeEnvState.get
+  private val envState = stateDefinitions.find(_.canHandleEnvironment(environmentName)) match {
+    case Some(state) => state
+    case None => throw new UnmappedEnvironmentException(environmentName)
   }
 
-  def toggleIsEnabled(toggleName: String): Boolean = {
-    val toggleStateString = toggles.getString(toggleName)
-    val toggleState = stateDefinitions.find(_.canHandleState(toggleStateString))
-
-    if (toggleState.isEmpty) throw InvalidTogglesException(toggleName)
-
-    envState.canRun(toggleState.get)
-  }
+  def toggleIsEnabled(toggleName: String): Boolean = envState.canRun(toggles(toggleName))
 }
 
