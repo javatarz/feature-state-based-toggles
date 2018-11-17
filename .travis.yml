@@ -1,7 +1,13 @@
 language: scala
 scala:
 - 2.12.7
-
 cache:
   directories:
-  - $HOME/.sbt
+  - "$HOME/.sbt"
+deploy:
+  provider: bintray
+  file: deploy_descriptor.json
+  user: javatarz
+  key:
+    secure: kuC9ZPAki3XNb2MTuGEnqxJ7SQEVBeqiMAkIWCkiMvZGb4GuGP2NRQhtWOcAVvKPP5NDt01qu2aU8Q4An+pdddzpnn6Vux7nQYjDl8wIHN+9pkdHRLplB7MAI02imeaYhHTbfPafrqSbWNmtmuYnV+gwx/zX1Z4Ud7D7Gko0kItL07WnRLVN6TH+CqYc+9Pl9xNwM+2oyPbW6KPuO6eOiIkFutuQfUZ20iLNs4Jdn5/tlWb8l+dXTyhrRm6ObEwymJ4bcqjgQRtjPC8coC/kARWxtbSpNWef32YuvXz569jq3N9KBM57kQqFueK0YL5Wv2zbASCm9sJvIgpu1MoGewnsF+6lQrg2UeyGB+YitQ5K9W8jaGdc5FDQlpnsNth8eeO0as8G8JKBuLGPidLC/2Eq9sTNBSP7yKtUUda27knOIhSWlyGfNErphOqXu6sSVOp7Oo+/qjCpl7qFsQ7QRoXL3Aj+P98bi3kHyu9a+TsYM8eor97RYLmUObrBJUbCrQjTwKJQJn4G0Uwqz9x5GjVm3hfbfF/4aFwsUHu5yKRn5ho5KGMJL+ADC6OasH7LNG8OHTStYHnrpBkIElI6hf/TZ4zD2+HCwrN4giKsPXYfYkgwrmg8479EJXOGr3ScKyQUvjrgBSb3+7NkGOIBc6gsxK3keVLKd28Q+gSSsHA=
+  skip_cleanup: true
