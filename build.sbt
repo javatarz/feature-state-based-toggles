@@ -13,18 +13,18 @@ resolvers += Resolver.jcenterRepo
 licenses += ("Apache-2.0", url("https://opensource.org/licenses/Apache-2.0"))
 
 pomExtra :=
-    <scm>
-        <connection>
-            scm:git:git://github.com/javatarz/feature-state-based-toggles.git
-        </connection>
-        <url>
-            https://github.com/javatarz/feature-state-based-toggles
-        </url>
-    </scm>
-        <developers>
-            <developer>
-                <id>javatarz</id>
-                <name>Karun Japhet</name>
-                <email>karun@japhet.in</email>
-            </developer>
-        </developers>
+  <scm>
+    <connection>
+      scm:git:git://github.com/javatarz/feature-state-based-toggles.git
+    </connection>
+    <url>
+      https://github.com/javatarz/feature-state-based-toggles
+    </url>
+  </scm>
+    <developers>
+      <developer>
+        <id>javatarz</id>
+        <name>Karun Japhet</name>
+        <email>karun@japhet.in</email>
+      </developer>
+    </developers>
