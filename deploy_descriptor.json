@@ -30,7 +30,7 @@
     {
       "includePattern": "target/scala-2.12/(.*).pom",
       "uploadPattern": "$1"
-    },
+    }
   ],
   "publish": true
 }
