@@ -8,20 +8,20 @@ class EnvironmentTogglesTest extends WordSpec with Matchers {
 
   "should be on" when {
     "environment state == toggle state" in {
-      uatEnv.toggleIsEnabled("signed-off-toggle") shouldBe true
+      uatEnv.toggleIsEnabled("feature-4") shouldBe true
 
       val itEnv = createEnvironment("integration_test")
-      itEnv.toggleIsEnabled("signed-off-toggle") shouldBe true
+      itEnv.toggleIsEnabled("feature-4") shouldBe true
     }
 
     "environment state < toggle state" in {
-      uatEnv.toggleIsEnabled("ready-for-release-toggle") shouldBe true
+      uatEnv.toggleIsEnabled("feature-5") shouldBe true
     }
   }
 
   "should be off" when {
     "environment state > toggle state" in {
-      uatEnv.toggleIsEnabled("in-dev-toggle") shouldBe false
+      uatEnv.toggleIsEnabled("feature-2") shouldBe false
     }
   }
 
