@@ -1,5 +1,7 @@
 # Feature State Based Toggles
 
+[![Build status](https://travis-ci.org/javatarz/feature-state-based-toggles.svg?branch=master)](https://travis-ci.org/javatarz/feature-state-based-toggles)
+
 A framework to map [feature toggles](https://www.martinfowler.com/articles/feature-toggles.html) to [feature states](https://agiledemystified.com/2012/02/25/user-story-life-cycle/) to environments to simply toggles in [Continuous Delivery](https://www.thoughtworks.com/continuous-delivery) **without having an opinion** on your project's feature states, environments or how you map them.
 
 All of the control. None of the headache.
