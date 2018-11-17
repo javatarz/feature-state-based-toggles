@@ -4,7 +4,7 @@ import java.util
 
 import scala.collection.JavaConverters.iterableAsScalaIterableConverter
 
-case class StateDefinition(private val position: Int, private val state: String, private val environments: List[String]) {
+private class StateDefinition(private val position: Int, private val state: String, private val environments: List[String]) {
   def canRun(otherState: StateDefinition): Boolean = position <= otherState.position
 
   def canHandleEnvironment(environment: String): Boolean = environments.exists(_.equalsIgnoreCase(environment))
@@ -12,7 +12,7 @@ case class StateDefinition(private val position: Int, private val state: String,
   def canHandleState(state: String): Boolean = state == this.state
 }
 
-object StateDefinition {
+private object StateDefinition {
   def apply(map: Map[String, Any], position: Int): StateDefinition = {
     val state = map("state").toString
     val environments = map("environments").asInstanceOf[util.List[String]].asScala.toList

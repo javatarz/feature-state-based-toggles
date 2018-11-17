@@ -3,10 +3,10 @@ package me.karun.toggles.fsbt
 import org.scalatest.{Matchers, WordSpec}
 
 class StateDefinitionTest extends WordSpec with Matchers {
-  val state = StateDefinition(1, "state-value", List("env-1", "env-2", "env-3"))
+  private val state = new StateDefinition(1, "state-value", List("env-1", "env-2", "env-3"))
 
   "can run" should {
-    val higherState = StateDefinition(10, "higher-state", List())
+    val higherState = new StateDefinition(10, "higher-state", List())
 
     "return true" when {
       "env is lower than toggle state" in {
