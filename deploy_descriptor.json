@@ -14,5 +14,13 @@
     "public_stats": true
   },
 
+  "version": {
+    "name": "1.0.0",
+    "desc": "Initial release",
+    "released": "2018-11-17",
+    "vcs_tag": "1.0.0",
+    "gpgSign": false
+  },
+
   "publish": true
 }
