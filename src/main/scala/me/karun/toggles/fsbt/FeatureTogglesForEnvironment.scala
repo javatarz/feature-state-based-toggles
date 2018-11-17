@@ -6,7 +6,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 import scala.collection.JavaConverters.{iterableAsScalaIterableConverter, mapAsScalaMapConverter}
 
-class EnvironmentToggles(fileName: String, baseKey: String, environmentName: String) {
+class FeatureTogglesForEnvironment(fileName: String, baseKey: String, environmentName: String) {
   private val config: Config = ConfigFactory.load(fileName)
   private val stateDefinitions = config.getList("me.karun.fsbt.stateDefinition").asScala
     .map(cv => cv.unwrapped())

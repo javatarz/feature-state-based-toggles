@@ -56,11 +56,11 @@ If the feature state is `in-user-acceptance-testing` which maps to the `uat` env
 
 ## How to use
 
-The entry point to the framework is `EnvironmentToggles`. Sample usage is available in [it's test](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/EnvironmentTogglesTest.scala).
+The entry point to the framework is `FeatureTogglesForEnvironment`. Sample usage is available in [it's test](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/FeatureTogglesForEnvironmentTest.scala).
 
 ```java
 // Setup
-val env = new EnvironmentToggles(fileName = "toggles.conf", baseKey = "me.karun.toggles", environmentName = "prod")
+val env = new FeatureTogglesForEnvironment(fileName = "toggles.conf", baseKey = "me.karun.toggles", environmentName = "prod")
 
 // Usage
 if (env.toggleIsEnabled("feature-name")) newImplementation()
@@ -81,5 +81,5 @@ Confused about what environments to map to which states? Ask your self when you 
 
 1. State Definitions are mandatory and must always be under `me.karun.fsbt.stateDefinition`
 1. The list is order specific. Toggles mapped to states lower on the list will work on environments mapped above it.
-1. If the environment value provided to `EnvironmentToggles` during instantiation is not mapped to a state definition, an exception will be thrown (as shown in [EnvironmentTogglesTest](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/EnvironmentTogglesTest.scala))
-1. If the feature toggle is mapped to a state that is not defined in the state definition, the `EnvironmentToggles` instantiation will fail (as shown in [EnvironmentTogglesTest](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/EnvironmentTogglesTest.scala))
+1. If the environment value provided to `FeatureTogglesForEnvironment` during instantiation is not mapped to a state definition, an exception will be thrown (as shown in [FeatureTogglesForEnvironmentTest](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/FeatureTogglesForEnvironmentTest.scala))
+1. If the feature toggle is mapped to a state that is not defined in the state definition, the `FeatureTogglesForEnvironment` instantiation will fail (as shown in [FeatureTogglesForEnvironmentTest](https://github.com/javatarz/feature-state-based-toggles/blob/master/src/test/scala/me/karun/toggles/fsbt/FeatureTogglesForEnvironmentTest.scala))

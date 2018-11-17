@@ -1,9 +1,9 @@
 package me.karun.toggles.fsbt
 
-import me.karun.toggles.fsbt.EnvironmentTogglesTest.{createEnvironment, createEnvironmentWithInvalidFile}
+import me.karun.toggles.fsbt.FeatureTogglesForEnvironmentTest.{createEnvironment, createEnvironmentWithInvalidFile}
 import org.scalatest.{Matchers, WordSpec}
 
-class EnvironmentTogglesTest extends WordSpec with Matchers {
+class FeatureTogglesForEnvironmentTest extends WordSpec with Matchers {
   private val uatEnv = createEnvironment("user_acceptance_test")
 
   "should be on" when {
@@ -48,8 +48,8 @@ class EnvironmentTogglesTest extends WordSpec with Matchers {
   }
 }
 
-object EnvironmentTogglesTest {
-  def createEnvironment(envName: String) = new EnvironmentToggles(fileName = "valid-toggles.conf", baseKey = "me.karun.toggles", environmentName = envName)
+object FeatureTogglesForEnvironmentTest {
+  def createEnvironment(envName: String) = new FeatureTogglesForEnvironment(fileName = "valid-toggles.conf", baseKey = "me.karun.toggles", environmentName = envName)
 
-  def createEnvironmentWithInvalidFile(envName: String) = new EnvironmentToggles(fileName = "invalid-toggles.conf", baseKey = "me.karun.toggles", environmentName = envName)
+  def createEnvironmentWithInvalidFile(envName: String) = new FeatureTogglesForEnvironment(fileName = "invalid-toggles.conf", baseKey = "me.karun.toggles", environmentName = envName)
 }
